@@ -1,15 +1,18 @@
 import java.awt.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class DrawPanel extends JPanel implements MouseListener {
 
     private boolean[][] grid;
+    private ArrayList<DrawPanel> bricks;
 
     public DrawPanel() {
         this.addMouseListener(this);
         randomizeGrid();
+        bricks = new ArrayList<>();
 
     }
 
@@ -45,6 +48,10 @@ public class DrawPanel extends JPanel implements MouseListener {
             }
             x += 25;
             y = 10;
+        }
+
+        for (DrawPanel fallingBricks : bricks) {
+
         }
 
     }
