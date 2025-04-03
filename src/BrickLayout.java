@@ -34,7 +34,7 @@ public class BrickLayout {
             // put this brick into the 2D array
             int row = bricks.size();
             for (cols = b.getStart(); cols < b.getEnd(); cols++) {
-                System.out.print(brickLayout[row][cols] + " ");
+                brickLayout[row][cols] = 1;
             }
         }
     }
