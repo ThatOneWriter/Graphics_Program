@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 public class DrawPanel extends JPanel implements MouseListener {
 
     private boolean[][] grid;
-    private ArrayList<DrawPanel> bricks;
+    private ArrayList<BrickLayout> bricks;
 
     public DrawPanel() {
         this.addMouseListener(this);
@@ -50,7 +50,9 @@ public class DrawPanel extends JPanel implements MouseListener {
             y = 10;
         }
 
-        for (DrawPanel fallingBricks : bricks) {
+        ArrayList<BrickLayout> brick = new ArrayList<>();
+        for (BrickLayout fallingBricks : bricks) {
+            fallingBricks.doOneBrick();
 
         }
 
