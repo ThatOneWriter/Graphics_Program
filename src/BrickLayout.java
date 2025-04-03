@@ -33,8 +33,10 @@ public class BrickLayout {
             Brick b = bricks.remove(0);
             // put this brick into the 2D array
             int row = bricks.size();
-            for (cols = b.getStart(); cols < b.getEnd(); cols++) {
-                brickLayout[row][cols] = 1;
+            for (int col = b.getStart(); col <= b.getEnd(); col++) {
+                if (col >= 0 && col < cols) {
+                    brickLayout[row][col] = 1;
+                }
             }
         }
     }

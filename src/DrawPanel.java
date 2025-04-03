@@ -54,6 +54,7 @@ public class DrawPanel extends JPanel implements MouseListener {
         for (BrickLayout fallingBricks : bricks) {
             fallingBricks.doOneBrick();
             brick.add(fallingBricks);
+            Graphics2D g1 = (Graphics2D) g;
 
 
         }
