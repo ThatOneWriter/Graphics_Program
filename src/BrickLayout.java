@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class BrickLayout {
 
-    private ArrayList<Brick> bricks;
-    private int[][] brickLayout;
-    private int cols;
+    private final ArrayList<Brick> bricks;
+    private final int[][] brickLayout;
+    private final int cols;
 
     public BrickLayout(String fileName, int cols, boolean dropAllBricks) {
         this.cols = cols;
@@ -31,14 +31,29 @@ public class BrickLayout {
     public void doOneBrick() {
         if (bricks.size() != 0) {
             Brick b = bricks.remove(0);
+            int start = b.getStart();
+            int end = b.getEnd();
             // put this brick into the 2D array
-            int row = bricks.size();
-            for (int col = b.getStart(); col <= b.getEnd(); col++) {
-                if (col >= 0 && col < cols) {
-                    brickLayout[row][col] = 1;
+            for (int row = brickLayout.length - 1; row >= 0; row--) {
+                boolean placeDown = true;
+                for (int col = start; col <= end; col++) {
+                    if (col <= 0 || col >= cols || brickLayout[row][col] == 1) {
+                        placeDown = false;
+                        break;
+                    }
                 }
+                if (placeDown) {
+                    for (int col = start; col <= end; col++) {
+                        if (col >= 0 && col < cols) {
+                            brickLayout[row][col] = 1;
+                        }
+                    }
+                    return;
+                }
+
             }
         }
+
     }
 
     public ArrayList<String> getFileData(String fileName) {
@@ -68,11 +83,6 @@ public class BrickLayout {
     }
 
     public boolean checkBrickSpot(int r, int c) {
-        if (brickLayout[r][c] == 1) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return brickLayout[r][c] == 1;
     }
 }
